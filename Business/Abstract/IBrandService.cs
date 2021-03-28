@@ -9,6 +9,10 @@ namespace Business.Abstract
 {
    public interface IBrandService
     {
+        List<Brand> GetAll();
+        Brand GetByBrandId(int id);      
         public void Add(Brand brand);
+        public void Delete(Brand brand);
+        public void Update(Brand brand);
     }
 }
