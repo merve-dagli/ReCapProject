@@ -11,24 +11,24 @@ namespace ConsoleIU
     {
         static void Main(string[] args)
         {
-            RentalManager rentalManager = new RentalManager(new EfRentalDal());
-            DateTime dt1 = new DateTime(2021, 03, 15);
-            DateTime dt2 = new DateTime(2021, 03, 16);
-            var result= rentalManager.Add(new Rental { RentalId=2,CarId=2,CustomerId=1,RentDate= dt1,ReturnDate=dt2});
-            if (result.Success == true)
-            {
-                Console.WriteLine(Messages.MessageAdded);
-            }
-            else
-            {
-                Console.WriteLine(Messages.MessageError);
-            }
+            //RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            //DateTime dt1 = new DateTime(2021, 03, 15);
+            //DateTime dt2 = new DateTime(2021, 03, 16);
+            //var result = rentalManager.Add(new Rental { RentalId = 2, CarId = 2, CustomerId = 1, RentDate = dt1, ReturnDate = dt2 });
+            //if (result.Success == true)
+            //{
+            //    Console.WriteLine(Messages.MessageAdded);
+            //}
+            //else
+            //{
+            //    Console.WriteLine(Messages.MessageError);
+            //}
 
             //CarTest();
 
             //BrandTest();
 
-            //ColorTest();
+           ColorTest();
 
             //GetByIdTest();
 
@@ -82,7 +82,7 @@ namespace ConsoleIU
             colorManager.Delete(new Color { ColorId = 7 });
 
             var result = colorManager.GetAll();
-            if (result.Success == true)
+            if (result.Success == false)
             {
                 foreach (var color in result.Data)
                 {
