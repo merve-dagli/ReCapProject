@@ -18,12 +18,12 @@ namespace DataAccess.Concrete.InMemory
         {
             _cars = new List<Car>
             {
-                new Car{Id=1, BrandId=1, ColorId=1, ModelYear="2020", DailyPrice=250, Description=" TÜM ARAÇLARIMIZ RENT A CAR KASKOLUDUR. İLANDA BELİRTİLEN ARAÇ HARİCİNDE DİĞER ARAÇ SEÇENEKLERİMİZ İÇİN İLETİŞİM BİLGİLERİNDEN BİZLERE ULAŞABİLİRSİNİZ."},  
-                new Car{Id=2, BrandId=2, ColorId=1, ModelYear="2020", DailyPrice=300, Description=" ZENGİN ÇEŞİT VE YÜKSEK MODEL BAKIMLI ARAÇLARIMIZLA HİZMETİNİZDEYİZ."},
-                new Car{Id=3, BrandId=8, ColorId=5, ModelYear="2019", DailyPrice=285, Description=" TÜM ARAÇLARIMIZ RENT A CAR KASKOLUDUR. İLANDA BELİRTİLEN ARAÇ HARİCİNDE DİĞER ARAÇ SEÇENEKLERİMİZ İÇİN AŞAĞIDAKİ İLETİŞİM BİLGİLERİNDEN BİZLERE ULAŞABİLİRSİNİZ."},
-                new Car{Id=4, BrandId=55, ColorId=7, ModelYear="2018", DailyPrice=134, Description=" AYLIK KİRALAMADA YILLIK KİRALAMA FİYAT AVANTAJI ÜCRETSİZ AVRUPA YAKASI ADRESE TESLİM AYLIK 4000 TL"},
-                new Car{Id=5, BrandId=6, ColorId=10, ModelYear="2015", DailyPrice=133, Description=" AYLIK KİRALAMADA YILLIK KİRALAMA FİYAT AVANTAJI ÜCRETSİZ AVRUPA YAKASI ADRESE TESLİM AYLIK 4000 TL"},
-                new Car{Id=6, BrandId=98, ColorId=4, ModelYear="2018", DailyPrice=130, Description=" GÜNDEN OTO KİRALAMA."}
+                new Car{CarId=1, BrandId=1, ColorId=1, ModelYear="2020", DailyPrice=250, Description=" TÜM ARAÇLARIMIZ RENT A CAR KASKOLUDUR. İLANDA BELİRTİLEN ARAÇ HARİCİNDE DİĞER ARAÇ SEÇENEKLERİMİZ İÇİN İLETİŞİM BİLGİLERİNDEN BİZLERE ULAŞABİLİRSİNİZ."},  
+                new Car{CarId=2, BrandId=2, ColorId=1, ModelYear="2020", DailyPrice=300, Description=" ZENGİN ÇEŞİT VE YÜKSEK MODEL BAKIMLI ARAÇLARIMIZLA HİZMETİNİZDEYİZ."},
+                new Car{CarId=3, BrandId=8, ColorId=5, ModelYear="2019", DailyPrice=285, Description=" TÜM ARAÇLARIMIZ RENT A CAR KASKOLUDUR. İLANDA BELİRTİLEN ARAÇ HARİCİNDE DİĞER ARAÇ SEÇENEKLERİMİZ İÇİN AŞAĞIDAKİ İLETİŞİM BİLGİLERİNDEN BİZLERE ULAŞABİLİRSİNİZ."},
+                new Car{CarId=4, BrandId=55, ColorId=7, ModelYear="2018", DailyPrice=134, Description=" AYLIK KİRALAMADA YILLIK KİRALAMA FİYAT AVANTAJI ÜCRETSİZ AVRUPA YAKASI ADRESE TESLİM AYLIK 4000 TL"},
+                new Car{CarId=5, BrandId=6, ColorId=10, ModelYear="2015", DailyPrice=133, Description=" AYLIK KİRALAMADA YILLIK KİRALAMA FİYAT AVANTAJI ÜCRETSİZ AVRUPA YAKASI ADRESE TESLİM AYLIK 4000 TL"},
+                new Car{CarId=6, BrandId=98, ColorId=4, ModelYear="2018", DailyPrice=130, Description=" GÜNDEN OTO KİRALAMA."}
             };
         }
 
@@ -34,7 +34,7 @@ namespace DataAccess.Concrete.InMemory
 
         public void Delete(Car car)
         {
-            Car carsToDelete = _cars.SingleOrDefault(c => c.Id == car.Id);
+            Car carsToDelete = _cars.SingleOrDefault(c => c.CarId == car.CarId);
             _cars.Remove(carsToDelete);
         }
 
@@ -70,7 +70,7 @@ namespace DataAccess.Concrete.InMemory
 
         public void Update(Car car)
         {
-            Car carsToUpdate = _cars.SingleOrDefault(c => c.Id == car.Id);
+            Car carsToUpdate = _cars.SingleOrDefault(c => c.CarId == car.CarId);
             carsToUpdate.BrandId = car.BrandId;
             carsToUpdate.ColorId = car.ColorId;
             carsToUpdate.ModelYear = car.ModelYear;

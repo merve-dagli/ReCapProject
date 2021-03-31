@@ -36,7 +36,7 @@ namespace Business.Concrete
 
         public IResult Delete(Car car)
         {
-            if (car.Id.ToString() == null)
+            if (car.CarId.ToString() == null)
             {
                 _carDal.Delete(car);
                 return new ErrorResult(Messages.MessageError);
@@ -54,7 +54,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Car>> GetByCarId(int id)
         {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.Id == id));
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.CarId == id));
         }
 
         public IDataResult<List<CarDetailDto>> GetCarDetails()
@@ -65,7 +65,7 @@ namespace Business.Concrete
 
         public IResult Update(Car car)
         {
-            if (car.Id.ToString() == null)
+            if (car.CarId.ToString() == null)
             {
                 return new ErrorResult(Messages.MessageError);
             }

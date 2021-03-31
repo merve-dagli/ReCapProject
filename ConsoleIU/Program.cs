@@ -1,4 +1,5 @@
 ﻿using Business.Concrete;
+using Business.Constants;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
@@ -10,6 +11,19 @@ namespace ConsoleIU
     {
         static void Main(string[] args)
         {
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            DateTime dt1 = new DateTime(2021, 03, 15);
+            DateTime dt2 = new DateTime(2021, 03, 16);
+            var result= rentalManager.Add(new Rental { RentalId=2,CarId=2,CustomerId=1,RentDate= dt1,ReturnDate=dt2});
+            if (result.Success == true)
+            {
+                Console.WriteLine(Messages.MessageAdded);
+            }
+            else
+            {
+                Console.WriteLine(Messages.MessageError);
+            }
+
             //CarTest();
 
             //BrandTest();
@@ -18,9 +32,11 @@ namespace ConsoleIU
 
             //GetByIdTest();
 
+            //CarDetailTest();
+        }
 
-
-
+        private static void CarDetailTest()
+        {
             CarManager carManager = new CarManager(new EfCarDal());
             var result = carManager.GetCarDetails();
             if (result.Success == true)
@@ -48,7 +64,7 @@ namespace ConsoleIU
             CarManager carManager = new CarManager(new EfCarDal());
             foreach (var result2 in carManager.GetByCarId(5).Data)
             {
-                Console.WriteLine("Bulunan Id: " + result2.Id + " -- Bulunan Aracın Model Yılı: " + result2.ModelYear);
+                Console.WriteLine("Bulunan Id: " + result2.CarId + " -- Bulunan Aracın Model Yılı: " + result2.ModelYear);
             }
 
             ColorManager colorManager = new ColorManager(new EfColorDal());
@@ -105,8 +121,8 @@ namespace ConsoleIU
             CarManager carManager = new CarManager(new EfCarDal());
             
             carManager.Add(new Car { BrandId = 2, ColorId = 4, DailyPrice = 450, Description = "Sıfıra yakın!", ModelYear = "2021" });        
-            carManager.Update(new Car {Id=1009, BrandId = 2, ColorId = 4, DailyPrice = 460, Description = "Sıfıra yakın!", ModelYear = "2021" });
-            carManager.Delete(new Car { Id = 1012 });
+            carManager.Update(new Car { CarId = 1009, BrandId = 2, ColorId = 4, DailyPrice = 460, Description = "Sıfıra yakın!", ModelYear = "2021" });
+            carManager.Delete(new Car { CarId = 1012 });
 
             var result = carManager.GetAll();
             if (result.Success == true)
