@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -19,42 +21,56 @@ namespace Business.Concrete
             _carDal = carsDal;
         }
 
-        public void Add(Car car)
+        public IResult Add(Car car)
         {
             if (car.DailyPrice > 0)
             {
                 _carDal.Add(car);
+                return new SuccessResult(Messages.MessageAdded);
             }
             else
             {
-                Console.WriteLine("Araç günlük fiyat eklenemedi!");
+                return new ErrorResult(Messages.DailyPriceInvalid);
             }
         }
 
-        public void Delete(Car car)
+        public IResult Delete(Car car)
         {
-            _carDal.Delete(car);
+            if (car.Id.ToString() == null)
+            {
+                _carDal.Delete(car);
+                return new ErrorResult(Messages.MessageError);
+            }
+            return new SuccessResult(Messages.MessageDeleted);
+            
+
         }
 
-        public List<Car> GetAll()
+        public IDataResult<List<Car>>GetAll()
         {
-            return _carDal.GetAll();
+
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll());
         }
 
-        public Car GetByCarId(int id)
+        public IDataResult<List<Car>> GetByCarId(int id)
         {
-            return _carDal.Get(c => c.Id == id);
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.Id == id));
         }
 
-        public List<CarDetailDto> GetCarDetails()
+        public IDataResult<List<CarDetailDto>> GetCarDetails()
         {
-            return _carDal.GetCarDetails();
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails());
         }
 
 
-        public void Update(Car car)
+        public IResult Update(Car car)
         {
+            if (car.Id.ToString() == null)
+            {
+                return new ErrorResult(Messages.MessageError);
+            }
             _carDal.Update(car);
+            return new SuccessResult(Messages.MessageUpdated);
         }
 
        

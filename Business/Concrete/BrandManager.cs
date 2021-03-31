@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -18,37 +20,51 @@ namespace Business.Concrete
             _brandDal = brandsDal;
         }
 
-        public void Add(Brand brand)
+        public IResult Add(Brand brand)
             {
                 if (brand.BrandName.Length >= 2)
                 {
                  _brandDal.Add(brand);
+                return new SuccessResult(Messages.MessageAdded);
                 }
                 else
                 {
-                    Console.WriteLine("Yetersiz karakter!");
+                return new ErrorResult(Messages.MessageError);
                 }
             
         }
 
-        public void Delete(Brand brand)
+        public IResult Delete(Brand brand)
         {
+            if (brand.BrandId.ToString() == null)
+            {
+                return new ErrorResult(Messages.MessageError);
+            }
+
             _brandDal.Delete(brand);
+            return new SuccessResult(Messages.MessageDeleted);
         }
 
-        public List<Brand> GetAll()
+        public IDataResult<List<Brand>> GetAll()
         {
-            return _brandDal.GetAll();
+            return new SuccessDataResult<List<Brand>>(_brandDal.GetAll());
         }
 
-        public Brand GetByBrandId(int id)
-        {
-            return _brandDal.Get(b=>b.BrandId==id);
-        }
+      
 
-        public void Update(Brand brand)
+        public IResult Update(Brand brand)
         {
+            if (brand.BrandId.ToString() == null)
+            {
+                return new ErrorResult(Messages.MessageError);
+            }
             _brandDal.Update(brand);
+            return new SuccessResult(Messages.MessageUpdated);
+        }
+
+        public IDataResult<List<Brand>> GetByBrandId(int id)
+        {
+            return new SuccessDataResult<List<Brand>>(_brandDal.GetAll(b => b.BrandId == id));
         }
     }
 }
