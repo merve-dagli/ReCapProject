@@ -18,12 +18,12 @@ namespace DataAccess.Concrete.EntityFramework
         {
             using(CarsDboContext context=new CarsDboContext())
             {
-                var result = from c in context.Car
-                             join b in context.Brand
+                var result = from c in context.Cars
+                             join b in context.Brands
                              on c.BrandId equals b.BrandId
-                             join cl in context.Color
+                             join cl in context.Colors
                              on c.ColorId equals cl.ColorId
-                             select new CarDetailDto { BrandId = b.BrandId, ColorId = cl.ColorId, BrandName = b.BrandName, ColorName = cl.ColorName, DailyPrice = c.DailyPrice,CarName=c.CarName };
+                             select new CarDetailDto { CarId=c.CarId,BrandId = b.BrandId, ColorId = cl.ColorId, BrandName = b.BrandName, ColorName = cl.ColorName, DailyPrice = c.DailyPrice,CarName=c.CarName };
                 return result.ToList();
             }
         }

@@ -8,7 +8,7 @@ namespace Business.Constants
 {
     public static class Messages
     {
-        public static string MessageAdded = "Ekleme işlmei gerçekleştirildi.";
+        public static string MessageAdded = "Ekleme işlemi gerçekleştirildi.";
         public static string MessageDeleted = "Silme işlemi gerçekleştirildi.";
         public static string MessageUpdated = "Güncelleme işlemi gerçekleşleştirildi.";
         public static string DailyPriceInvalid = "Araç günlük fiyat 0 TL'den büyük olmalı";  

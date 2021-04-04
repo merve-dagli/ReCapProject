@@ -11,28 +11,52 @@ namespace ConsoleIU
     {
         static void Main(string[] args)
         {
-            //RentalManager rentalManager = new RentalManager(new EfRentalDal());
-            //DateTime dt1 = new DateTime(2021, 03, 15);
-            //DateTime dt2 = new DateTime(2021, 03, 16);
-            //var result = rentalManager.Add(new Rental { RentalId = 2, CarId = 2, CustomerId = 1, RentDate = dt1, ReturnDate = dt2 });
-            //if (result.Success == true)
-            //{
-            //    Console.WriteLine(Messages.MessageAdded);
-            //}
-            //else
-            //{
-            //    Console.WriteLine(Messages.MessageError);
-            //}
+            //UserTest();
+
+            RentalTest();
 
             //CarTest();
 
             //BrandTest();
 
-           ColorTest();
+            //ColorTest();
 
             //GetByIdTest();
 
             //CarDetailTest();
+        }
+
+        private static void UserTest()
+        {
+            UserManager userManager = new UserManager(new EfUserDal());
+            var result = userManager.GetAll();
+            if (result.Success == true)
+            {
+                foreach (var user in result.Data)
+                {
+                    Console.WriteLine("Müşterinin Adı-Soyadı: " + user.FirstName + " " + user.LastName);
+                }
+            }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
+        }
+
+        private static void RentalTest()
+        {
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            DateTime dt1 = new DateTime(2021, 03, 15);
+            DateTime dt2 = new DateTime(2021, 03, 16);
+            var result = rentalManager.Add(new Rental { CarId = 2, CustomerId = 1, RentDate = dt1, ReturnDate = dt2 });
+            if (result.Success == true)
+            {
+                Console.WriteLine(result.Message);
+            }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
         }
 
         private static void CarDetailTest()
@@ -44,6 +68,7 @@ namespace ConsoleIU
                 foreach (var car in result.Data)
                 {
                     Console.WriteLine("Car : " + car.CarName + " -- Price : " + car.DailyPrice + " -- Brand Name : " + car.BrandName + " -- Color Name : " + car.ColorName);
+                    
                 }
             }
             else
@@ -78,11 +103,12 @@ namespace ConsoleIU
         {
             ColorManager colorManager = new ColorManager(new EfColorDal());
             colorManager.Add(new Color { ColorName = "BEIGE ANTIQUE MET", ColorCode = "129" });
-            colorManager.Update(new Color { ColorId = 6, ColorName = "BEIGE ANTIQUE MET", ColorCode = "128" });
-            colorManager.Delete(new Color { ColorId = 7 });
+            colorManager.Update(new Color { ColorId = 8, ColorName = "BEIGE ANTIQUE MET", ColorCode = "129" });
+            colorManager.Delete(new Color { ColorId = 2018 });
+ 
 
             var result = colorManager.GetAll();
-            if (result.Success == false)
+            if (result.Success == true)
             {
                 foreach (var color in result.Data)
                 {
@@ -100,7 +126,7 @@ namespace ConsoleIU
             BrandManager brandManager = new BrandManager(new EfBrandDal());
             brandManager.Add(new Brand { BrandName = "Renault", BrandCountry = "İtalya" });
             brandManager.Update(new Brand { BrandId = 1006, BrandName = "Renault", BrandCountry = "Fransa" });
-            brandManager.Delete(new Brand { BrandId = 1005 });
+            brandManager.Delete(new Brand { BrandId = 1010 });
             var result = brandManager.GetAll();
             if (result.Success == true)
             {

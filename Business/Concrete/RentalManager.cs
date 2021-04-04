@@ -14,7 +14,7 @@ namespace Business.Concrete
 {
     public class RentalManager : IRentalService
     {
-        IRentalDal _rentalsDal;
+         IRentalDal _rentalsDal;
 
         public RentalManager(IRentalDal rentalsDal)
         {
@@ -23,7 +23,10 @@ namespace Business.Concrete
 
         public IResult Add(Rental rental)
         {
-            if (rental.ReturnDate.ToString() == null)
+
+
+
+            if (rental.ReturnDate == default(DateTime))
             {
                 return new ErrorResult(Messages.MessageError);
             }
