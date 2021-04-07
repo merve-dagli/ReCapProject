@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace Business.Abstract
 {
-    public interface ICarServices
+    public interface ICarService
     {
         IDataResult<List<Car>> GetAll();
-        IDataResult<List<Car>> GetByCarId(int id);
+        IDataResult<Car> GetByCarId(int carId);
         IResult Add(Car car);
         IResult Delete(Car car);
         IResult Update(Car car);

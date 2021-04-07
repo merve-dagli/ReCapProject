@@ -42,9 +42,9 @@ namespace Business.Concrete
             return new SuccessDataResult<List<User>>(_userDal.GetAll());
         }
 
-        public IDataResult<List<User>> GetByUserId(int id)
+        public IDataResult<User> GetByUserId(int id)
         {
-            return new SuccessDataResult<List<User>>(_userDal.GetAll(u => u.UserId == id));
+            return new SuccessDataResult<User>(_userDal.Get(u => u.UserId == id));
         }
 
         public IResult Update(User user)
@@ -55,6 +55,7 @@ namespace Business.Concrete
             }
             else
             {
+                _userDal.Update(user);
                 return new SuccessResult(Messages.MessageUpdated);
             }
         }

@@ -62,9 +62,9 @@ namespace Business.Concrete
             return new SuccessResult(Messages.MessageUpdated);
         }
 
-        public IDataResult<List<Brand>> GetByBrandId(int id)
+        public IDataResult<Brand> GetByBrandId(int id)
         {
-            return new SuccessDataResult<List<Brand>>(_brandDal.GetAll(b => b.BrandId == id));
+            return new SuccessDataResult<Brand>(_brandDal.Get(b => b.BrandId == id));
         }
     }
 }

@@ -13,13 +13,13 @@ namespace ConsoleIU
         {
             //UserTest();
 
-            RentalTest();
+            //RentalTest();
 
             //CarTest();
 
             //BrandTest();
 
-            //ColorTest();
+            ColorTest();
 
             //GetByIdTest();
 
@@ -79,24 +79,24 @@ namespace ConsoleIU
 
         private static void GetByIdTest()
         {
-            BrandManager brandManager = new BrandManager(new EfBrandDal());
-            foreach(var result in brandManager.GetByBrandId(1).Data)
-            {
-                Console.WriteLine("Bulunan Id: " + result.BrandId + " -- Bulunan Marka Adı: " + result.BrandName);
-            }
-                  
+            //BrandManager brandManager = new BrandManager(new EfBrandDal());
+            //foreach(var result in brandManager.GetByBrandId(1).Data)
+            //{
+            //    Console.WriteLine("Bulunan Id: " + result.BrandId + " -- Bulunan Marka Adı: " + result.BrandName);
+            //}
 
-            CarManager carManager = new CarManager(new EfCarDal());
-            foreach (var result2 in carManager.GetByCarId(5).Data)
-            {
-                Console.WriteLine("Bulunan Id: " + result2.CarId + " -- Bulunan Aracın Model Yılı: " + result2.ModelYear);
-            }
 
-            ColorManager colorManager = new ColorManager(new EfColorDal());
-            foreach (var result3 in colorManager.GetByColorId(2).Data)
-            {
-                Console.WriteLine("Bulunan Id: " + result3.ColorId + " -- Bulunan Aracın Rengi: " + result3.ColorName);
-            }
+            //CarManager carManager = new CarManager(new EfCarDal());
+            //foreach (var result2 in carManager.GetByCarId(5).Data)
+            //{
+            //    Console.WriteLine("Bulunan Id: " + result2.CarId + " -- Bulunan Aracın Model Yılı: " + result2.ModelYear);
+            //}
+
+            //ColorManager colorManager = new ColorManager(new EfColorDal());
+            //foreach (var result3 in colorManager.GetByColorId(2).Data)
+            //{
+            //    Console.WriteLine("Bulunan Id: " + result3.ColorId + " -- Bulunan Aracın Rengi: " + result3.ColorName);
+            //}
         }
 
         private static void ColorTest()

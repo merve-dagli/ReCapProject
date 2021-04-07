@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
-    public class CarManager : ICarServices
+    public class CarManager : ICarService
     {
         ICarDal _carDal;
 
@@ -38,9 +38,10 @@ namespace Business.Concrete
         {
             if (car.CarId.ToString() == null)
             {
-                _carDal.Delete(car);
+                
                 return new ErrorResult(Messages.MessageError);
             }
+            _carDal.Delete(car);
             return new SuccessResult(Messages.MessageDeleted);
             
 
@@ -52,10 +53,6 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Car>>(_carDal.GetAll());
         }
 
-        public IDataResult<List<Car>> GetByCarId(int id)
-        {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.CarId == id));
-        }
 
         public IDataResult<List<CarDetailDto>> GetCarDetails()
         {
@@ -73,8 +70,9 @@ namespace Business.Concrete
             return new SuccessResult(Messages.MessageUpdated);
         }
 
-       
-
-     
+        IDataResult<Car> ICarService.GetByCarId(int carId)
+        {
+            return new SuccessDataResult<Car>(_carDal.Get(c => c.CarId == carId));
+        }
     }
 }
