@@ -9,31 +9,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
+using Core.CrossCuttingConcerns.Validation;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 
 namespace Business.Concrete
 {
     public class RentalManager : IRentalService
     {
-         IRentalDal _rentalsDal;
+        IRentalDal _rentalsDal;
 
         public RentalManager(IRentalDal rentalsDal)
         {
             _rentalsDal = rentalsDal;
         }
 
+        [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Rental rental)
         {
 
-            if (rental.ReturnDate == null)
-            {
-                return new ErrorResult(Messages.MessageError);
-            }
-            else
-            {
-                _rentalsDal.Add(rental);
-                return new SuccessResult(Messages.MessageAdded);
-            }
-  
+          
+            _rentalsDal.Add(rental);
+            return new SuccessResult(Messages.MessageAdded);
+
+
         }
 
         public IResult Delete(Rental rental)

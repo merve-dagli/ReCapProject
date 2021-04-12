@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\RRRecapProject\Core\Core.csproj" />
+    <ProjectReference Include="..\..\FinalProject\Core\Core.csproj" />
   </ItemGroup>
 
 </Project>

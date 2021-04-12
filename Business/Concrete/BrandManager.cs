@@ -1,5 +1,8 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
+using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -20,17 +23,13 @@ namespace Business.Concrete
             _brandDal = brandsDal;
         }
 
+        [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Brand brand)
-            {
-                if (brand.BrandName.Length >= 2)
-                {
-                 _brandDal.Add(brand);
-                return new SuccessResult(Messages.MessageAdded);
-                }
-                else
-                {
-                return new ErrorResult(Messages.MessageError);
-                }
+        {
+           
+            _brandDal.Add(brand);
+            return new SuccessResult(Messages.MessageAdded);
+        
             
         }
 
