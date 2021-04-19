@@ -14,6 +14,7 @@ namespace Business.Constants
         public static string DailyPriceInvalid = "Araç günlük fiyat 0 TL'den büyük olmalı";  
         public static string BrandNameInvalid = "Yetersiz karakter!";
         public static string MessageError = "Hatalı işlem. Lütfen tekrar deneyiniz!";
+        public static string ImageNotFound = "Fotoğraf bulunamadı!";
 
     }
 }

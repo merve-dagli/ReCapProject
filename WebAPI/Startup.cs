@@ -44,6 +44,8 @@ namespace WebAPI
             //services.AddSingleton<ICustomerDal, EfCustomerDal>();
             //services.AddSingleton<IUserService, UserManager>();
             //services.AddSingleton<IUserDal, EfUserDal>();
+            services.AddControllersWithViews();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPI", Version = "v1" });
@@ -64,7 +66,10 @@ namespace WebAPI
 
             app.UseRouting();
 
+            app.UseStaticFiles();
+
             app.UseAuthorization();
+
 
             app.UseEndpoints(endpoints =>
             {
@@ -73,3 +78,4 @@ namespace WebAPI
         }
     }
 }
+
