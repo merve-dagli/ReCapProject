@@ -15,6 +15,8 @@ namespace Business.Constants
         public static string BrandNameInvalid = "Yetersiz karakter!";
         public static string MessageError = "Hatalı işlem. Lütfen tekrar deneyiniz!";
         public static string ImageNotFound = "Fotoğraf bulunamadı!";
+        public static string AuthorizationDenied = "Yetkiniz yok!";
+        public static string AccessTokenCreated = "Access token başarıyla oluşturuldu";
 
     }
 }
