@@ -1,5 +1,8 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspect.Autofac;
 using Business.Constants;
+using Core.Aspects.Autofac;
+using Core.Aspects.Autofac.Caching;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -20,6 +23,7 @@ namespace Business.Concrete
             _customerDal = customersDal;
         }
 
+      
         public IResult Add(Customer customer)
         {
             _customerDal.Add(customer);
@@ -36,16 +40,18 @@ namespace Business.Concrete
             return new SuccessResult(Messages.MessageDeleted);
         }
 
+        [CacheAspect]
         public IDataResult<List<Customer>> GetAll()
         {
             return new SuccessDataResult<List<Customer>>(_customerDal.GetAll());
         }
 
+        [CacheAspect]
         public IDataResult<Customer> GetByCustomerId(int id)
         {
             return new SuccessDataResult<Customer>(_customerDal.Get(c => c.CustomerId == id));
         }
-
+        [SecuredOperation("admin")]
         public IResult Update(Customer customer)
         {
             if (customer.CustomerId.ToString() == null)

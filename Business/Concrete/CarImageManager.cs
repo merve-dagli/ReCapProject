@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Business;
 using Core.Utilities.Helpers;
@@ -32,7 +33,7 @@ namespace Business.Concrete
             var imageCount = _carImageDal.GetAll(c => c.CarId == carImage.CarId).Count;
             if (imageCount >= 5)
             {
-                return new ErrorResult("One car must have 5 or less images");
+                return new ErrorResult("Bir araç için bir veya daha fazla resim olmalı!");
             }
             var imageResult = FileHelper.Upload(file);
             if (!imageResult.Success)
@@ -63,6 +64,7 @@ namespace Business.Concrete
             return new SuccessDataResult<CarImage>(_carImageDal.Get(p => p.CarImageId == id));
         }
 
+        [CacheAspect]
         public IDataResult<List<CarImage>> GetAll()
         {
             return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll());
